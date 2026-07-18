@@ -38,5 +38,8 @@ outputs/
 *.bin
 *.safetensors
 
+test_qwen.py
+
+
 # Temporary files
 *.save
