@@ -211,6 +211,6 @@ This project was developed for learning and research purposes.
 
 ---
 
-# 👩‍💻 Author
+# Author
 
 **Mitali Raj**
