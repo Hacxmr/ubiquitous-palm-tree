@@ -1,172 +1,167 @@
-# Fashion Retrieval System using OpenCLIP, FAISS and Qwen2.5-VL
+# 👗 Fashion Retrieval System using OpenCLIP, FAISS & Qwen2.5-VL
+
+![Python](https://img.shields.io/badge/Python-3.11-blue)
+![PyTorch](https://img.shields.io/badge/PyTorch-2.x-red)
+![OpenCLIP](https://img.shields.io/badge/OpenCLIP-ViT--H14-green)
+![FAISS](https://img.shields.io/badge/FAISS-Vector_Search-orange)
+![SQLite](https://img.shields.io/badge/SQLite-Database-blue)
+![Gradio](https://img.shields.io/badge/Gradio-UI-purple)
+
+---
 
 ## Overview
 
-This project implements a multimodal fashion retrieval system capable of retrieving visually similar fashion products from a natural language query.
+This project implements a **multimodal fashion retrieval system** that retrieves visually relevant fashion products from natural language queries.
 
-The system combines contrastive vision-language embeddings for efficient retrieval with a Vision Language Model (Qwen2.5-VL) for semantic reranking.
+The system combines:
 
-The retrieval pipeline is designed to be scalable and follows a two-stage architecture commonly used in production search systems.
+- OpenCLIP for multimodal embeddings
+- FAISS for efficient similarity search
+- SQLite for metadata filtering
+- Qwen2.5-VL for semantic reranking
+- Gradio for an interactive user interface
+
+The retrieval pipeline follows a scalable two-stage retrieval architecture commonly used in production search systems.
 
 ---
 
-## Features
+# Tech Stack
 
-- Text-to-image fashion retrieval
-- OpenCLIP-based multimodal embeddings
-- FAISS vector similarity search
+| Category | Technology |
+|-----------|------------|
+| Programming Language | Python 3.11 |
+| Vision Encoder | OpenCLIP ViT-H-14 |
+| Vision Language Model | Qwen2.5-VL-7B-Instruct |
+| Vector Search | FAISS |
+| Metadata Database | SQLite |
+| Dataset | DeepFashion Multimodal |
+| Framework | PyTorch |
+| UI | Gradio |
+| Numerical Computing | NumPy |
+| Dataset Library | Hugging Face Datasets |
+
+---
+
+# System Architecture
+
+
+
+---
+
+# Features
+
+- Natural language fashion search
+- Hybrid retrieval pipeline
+- OpenCLIP multimodal embeddings
 - SQLite metadata filtering
+- FAISS similarity search
 - Qwen2.5-VL semantic reranking
 - Interactive Gradio interface
-- Hybrid retrieval pipeline
 
 ---
 
-## Architecture
+# Project Structure
 
-```
-
-User Query
-│
-▼
-OpenCLIP Text Encoder
-│
-▼
-Metadata Filter (SQLite)
-│
-▼
-FAISS Vector Search
-│
-▼
-Top-N Candidates
-│
-▼
-Qwen2.5-VL Reranker
-│
-▼
-Top-K Results
-
-```
-
----
-
-## Project Structure
-
-```
-
+```text
 project/
 │
-├── dataset/
-│
+├── database/
 ├── demo/
-│   └── app.py
-│
+├── indexer/
 ├── models/
-│   ├── openclip.py
-│   └── qwen_vl.py
-│
 ├── retriever/
-│   ├── search.py
-│   └── rerank.py
-│
-├── outputs/
-│   ├── embeddings/
-│   ├── faiss/
-│   └── metadata/
-│
+├── scripts/
+├── screenshots/
 ├── requirements.txt
 └── README.md
-
 ```
 
 ---
 
-## Dataset
+# Dataset
 
-DeepFashion Multimodal Dataset
+**DeepFashion Multimodal Dataset**
 
-Contains approximately **42,500** fashion products with:
+Approximately **42,500** fashion products containing:
 
-- Product image
-- Category hierarchy
-- Product description
+- Product Images
+- Product Descriptions
+- Category Hierarchy
 - Metadata
 
 ---
 
-## Technologies Used
+# Retrieval Pipeline
 
-| Component | Technology |
-|----------|-------------|
-| Vision Encoder | OpenCLIP ViT-H-14 |
-| Vision Language Model | Qwen2.5-VL-7B-Instruct |
-| Vector Database | FAISS |
-| Metadata Store | SQLite |
-| Dataset | Hugging Face Datasets |
-| Interface | Gradio |
-| Language | Python |
+### Stage 1 — Metadata Filtering
 
----
-
-## Retrieval Pipeline
-
-### Stage 1: Metadata Filtering
-
-The user query is analyzed to identify simple attributes such as:
+SQLite filters candidate products using metadata such as:
 
 - Gender
-- Garment type
-- Clothing category
-
-Relevant candidates are selected using SQLite.
+- Garment category
+- Clothing type
 
 ---
 
-### Stage 2: Vector Retrieval
+### Stage 2 — Vector Retrieval
 
-The text query is encoded using OpenCLIP.
+OpenCLIP converts the user query into a text embedding.
 
-Similarity search is performed using FAISS to retrieve the most relevant candidate images.
-
----
-
-### Stage 3: Vision-Language Reranking
-
-The top retrieved candidates are passed to Qwen2.5-VL.
-
-Qwen analyzes each image together with the user query and assigns a semantic relevance score.
-
-The final ranking is based on these scores.
+FAISS retrieves the most visually relevant fashion products.
 
 ---
 
-## Example Queries
+### Stage 3 — Semantic Reranking
 
-- women tops
-- blue denim jeans
-- black formal shirt
-- red floral dress
-- white sneakers
-- floral summer dress
+Qwen2.5-VL analyzes each retrieved image together with the user query.
+
+Each candidate receives a semantic relevance score before producing the final ranked results.
 
 ---
 
-## Running the Project
+# 📸 Demo
 
-### Create environment
+## Query: Shirt
+
+<img src="screenshots/fashion_1.jpg" width="900"/>
+
+---
+
+## Query: Women Top
+
+<img src="screenshots/fashion_2.jpg" width="900"/>
+
+---
+
+## Query: Denim Jeans
+
+<img src="screenshots/fashion_3.jpg" width="900"/>
+
+---
+
+# Running the Project
+
+### Clone Repository
+
+```bash
+git clone https://github.com/Hacxmr/ubiquitous-palm-tree.git
+cd ubiquitous-palm-tree
+```
+
+### Create Environment
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate
 ```
 
-### Install dependencies
+### Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### Launch application
+### Launch
 
 ```bash
 python -m demo.app
@@ -174,122 +169,46 @@ python -m demo.app
 
 ---
 
-## Sample Workflow
+# Performance
 
-Input:
-
-```
-
-women blue denim jacket
-
-```
-
-Pipeline:
-
-```
-
-Query
-↓
-
-OpenCLIP embedding
-↓
-
-Metadata filtering
-↓
-
-FAISS search
-↓
-
-Top candidates
-↓
-
-Qwen reranking
-↓
-
-Final ranked results
-
-```
+| Metric | Value |
+|---------|-------|
+| Dataset Size | 42,537 Products |
+| Embedding Model | OpenCLIP ViT-H-14 |
+| Search Engine | FAISS |
+| Metadata Store | SQLite |
+| Semantic Model | Qwen2.5-VL-7B |
 
 ---
 
-## Performance
+# Limitations
 
-Dataset size:
-
-- 42,537 products
-
-Embedding model:
-
-- OpenCLIP ViT-H-14
-
-Similarity search:
-
-- FAISS Inner Product Search
-
-Semantic reranking:
-
-- Qwen2.5-VL-7B
+- Qwen reranking increases inference latency.
+- Metadata filtering is currently rule-based.
+- Semantic reranking is performed sequentially.
 
 ---
 
-## Limitations
+# Future Improvements
 
-- Qwen reranking introduces additional inference latency because each retrieved candidate is analyzed individually.
-- Metadata filtering currently relies on rule-based keyword matching.
-- The reranking stage is sequential and can be optimized using batching or asynchronous inference.
-
----
-
-## Future Improvements
-
-- Batch inference for Qwen reranking
-- Attribute extraction using LLM-generated structured queries
-- Color and material-aware filtering
-- User feedback-based relevance learning
-- Distributed FAISS index for larger datasets
-- Deployment with FastAPI and Docker
-- GPU-optimized inference using TensorRT or vLLM
+- Batch Qwen inference
+- LLM-generated structured metadata filters
+- Color-aware retrieval
+- Material-aware retrieval
+- FastAPI deployment
+- Docker support
+- TensorRT optimization
+- vLLM serving
+- User relevance feedback
 
 ---
 
-## Results
+# License
 
-The hybrid retrieval system combines fast vector search with semantic reranking, producing more contextually relevant fashion recommendations than vector similarity search alone while maintaining a modular and extensible architecture.
-
-## Demo
-
-### User Interface
-
-<p align="center">
-  <img src="screenshots/ui.png" width="900">
-</p>
+This project was developed for learning and research purposes.
 
 ---
 
-### Query: women tops
-
-<p align="center">
-  <img src="screenshots/women_tops.png" width="900">
-</p>
-
----
-
-### Query: blue denim jeans
-
-<p align="center">
-  <img src="screenshots/denim.png" width="900">
-</p>
-
----
-
-### Query: floral dress
-
-<p align="center">
-  <img src="screenshots/dress.png" width="900">
-</p>
-
----
-
-## Author
+# 👩‍💻 Author
 
 **Mitali Raj**
