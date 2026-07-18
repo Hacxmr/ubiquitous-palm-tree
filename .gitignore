@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+
+# Virtual environment
+.venv/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+
+# Gradio
+.gradio/
+
+# Hugging Face cache
+.cache/
+
+# Dataset
+dataset/
+
+# Generated outputs
+outputs/
+
+# Python cache
+**/__pycache__/
+
+# Logs
+*.log
+
+# Environment
+.env
+
+# Model checkpoints
+*.bin
+*.safetensors
+
+# Temporary files
+*.save

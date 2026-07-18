@@ -19,7 +19,6 @@ class QwenVL:
             model_name,
             torch_dtype=torch.bfloat16,
             device_map="auto",
-            attn_implementation="flash_attention_2"
         )
 
         self.processor = AutoProcessor.from_pretrained(model_name)
