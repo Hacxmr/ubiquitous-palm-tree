@@ -44,7 +44,9 @@ The retrieval pipeline follows a scalable two-stage retrieval architecture commo
 
 # System Architecture
 
-
+<p align="center">
+  <img src="./fashion_architecture.png" alt="Fashion Retrieval System Architecture" width="1000">
+</p>
 
 ---
 
