@@ -256,6 +256,38 @@ Semantic reranking:
 
 The hybrid retrieval system combines fast vector search with semantic reranking, producing more contextually relevant fashion recommendations than vector similarity search alone while maintaining a modular and extensible architecture.
 
+## Demo
+
+### User Interface
+
+<p align="center">
+  <img src="screenshots/ui.png" width="900">
+</p>
+
+---
+
+### Query: women tops
+
+<p align="center">
+  <img src="screenshots/women_tops.png" width="900">
+</p>
+
+---
+
+### Query: blue denim jeans
+
+<p align="center">
+  <img src="screenshots/denim.png" width="900">
+</p>
+
+---
+
+### Query: floral dress
+
+<p align="center">
+  <img src="screenshots/dress.png" width="900">
+</p>
+
 ---
 
 ## Author
